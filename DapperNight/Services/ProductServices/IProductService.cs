@@ -9,8 +9,10 @@ namespace DapperNight.Services.ProductServices
       
         Task CreateProductAsync(CreateProductDto createProductDto);
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync();
+        Task<List<ResultProductWithCategoryDto>> GetAllProductWithProcCategoryAsync();
         Task UpdateProductAsync(UpdateProductDto updateProductDto);
         Task DeleteProductAsync(int id);
         Task<GetByIdProductDto> GetByIdProductAsync(int id);
+        Task<int> GetProductCountAsync();
     }
 }

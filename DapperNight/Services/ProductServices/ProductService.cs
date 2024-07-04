@@ -52,6 +52,16 @@ namespace DapperNight.Services.ProductServices
             return values.ToList();
         }
 
+        public async Task<List<ResultProductWithCategoryDto>> GetAllProductWithProcCategoryAsync()
+        {
+            string query = "ExecuteProductList";
+            var parameters = new DynamicParameters();
+            var connection = _context.CreateConnection();
+            var values = await connection.QueryAsync<ResultProductWithCategoryDto>(query, parameters);
+           
+            return values.ToList();
+        }
+
         public async Task<GetByIdProductDto> GetByIdProductAsync(int id)
         {
             string query = "select * from TblProduct Where ProductId=@productId";
@@ -60,6 +70,14 @@ namespace DapperNight.Services.ProductServices
             var x = _context.CreateConnection();
             var values = await x.QueryFirstOrDefaultAsync<GetByIdProductDto>(query, parameters);
             return values;
+        }
+
+        public async Task<int> GetProductCountAsync()
+        {
+            string query = "Select Count(*) From TblProduct";
+            var connection = _context.CreateConnection();
+            int productCount= await connection.QueryFirstAsync<int>(query);
+            return productCount;
         }
 
         public async Task UpdateProductAsync(UpdateProductDto updateProductDto)
