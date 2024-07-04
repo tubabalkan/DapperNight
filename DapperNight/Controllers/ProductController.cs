@@ -19,6 +19,11 @@ namespace DapperNight.Controllers
             var values = await _productService.GetAllProductAsync();
             return View(values);
         }
+        public async Task<IActionResult> ProductListWithCategory()
+        {
+            var values = await _productService.GetAllProductWithCategoryAsync();
+            return View(values);
+        }
         public IActionResult CreateProduct()
         {
             return View();
